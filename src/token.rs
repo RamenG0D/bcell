@@ -29,4 +29,19 @@ impl<T, const ID: usize> TokenWith<T, ID> {
     pub fn cell(&self, data: T) -> Cell<T, ID> {
         Cell::new(data)
     }
+
+	/// Get a reference to the inner value.
+	pub fn get(&self) -> &T {
+		&self.0
+	}
+
+	/// Get a mutable reference to the inner value.
+	pub fn get_mut(&mut self) -> &mut T {
+		&mut self.0
+	}
+
+	/// Consume the token and return the inner value.
+	pub fn into_inner(self) -> T {
+		self.0
+	}
 }
