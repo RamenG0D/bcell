@@ -1,0 +1,14 @@
+[package]
+name = "bcell"
+version = "0.1.0"
+edition = "2024"
+authors = ["RamenGod"]
+repository = "TODO" # TODO: add repo link
+
+readme = "README.md"
+
+description = "A *Better*-Cell implementation (than RefCell) using const generics and zero-cost tokens to enforce borrow rules at compile time."
+license-file = "LICENSE"
+
+[dependencies.iota]
+path = "iota"
