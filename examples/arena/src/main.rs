@@ -8,15 +8,13 @@ pub struct Arena<T, const ID: usize> {
 
 type Index<const ID: usize> = TokenWith<usize, ID>;
 
-impl<T, U, const ID: usize> From<TokenWith<U, ID>> for Arena<T, ID> {
-    fn from(_: TokenWith<U, ID>) -> Self {
+impl<T, const ID: usize> Arena<T, ID> {
+    fn new(_: TokenWith<U, ID>) -> Self {
         Self {
             inner: UnsafeCell::new(Vec::new()),
         }
     }
-}
 
-impl<T, const ID: usize> Arena<T, ID> {
     pub fn push(&mut self, value: T) -> Index<ID> {
         let inner = self.inner.get_mut();
         let pos = inner.len();
@@ -35,7 +33,7 @@ impl<T, const ID: usize> Arena<T, ID> {
     pub fn get_mut(&self, index: &mut Index<ID>) -> &mut T {
         let inner = unsafe { self.inner.get().as_mut().unwrap() };
 
-        unsafe { inner.get_unchecked_mut(index.0) }
+        unsafe { inner.get_unchecked_mut(*index.get()) }
     }
 }
 
