@@ -142,7 +142,9 @@ pub fn unique(_: TokenStream) -> TokenStream {
 
 Yep, its pretty much the same thing but as a `proc-macro`! It mostly works just because of the principal that `proc-macro`s are basically magic, they are programs which insert code and run as a whole program, so they can kinda do whatever they want.
 
-I have no idea if this is defined behaviour or not, but another option which might be far more defined, would be using `env` vars to create a counter state and return a value.
+I have no idea if this is defined behaviour or not, but another option which is far more defined, would be using `env` vars to create a counter state and return the `env var`s value.
+
+Env vars are platform dependant though, so instead we could simply create a `file`, open it, then increment an integer inside. This is probably the most stable method as wont have problems across files, projects, etc. and would be available on any system that could compile rust projects anyways.
 
 ## documentation
 
